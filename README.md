@@ -75,7 +75,7 @@ Cuando los objetos tienen varios elementos, se combinan usando la función `c()`
 w <- list(nombre="Fred", numeros=a, matriz=y, edad=5.3, datos=datos)
 ```
 #### Vectores atómicos (listas de elementos de la misma clase)
-Los valores numéricos y lógicos se escriben normalemte (1.1, 2, 3, TRUE, FALSE, NA). En cambio, los valores categóricos de encierran entre comillas simples ("Alto", "Bajo", "Sitio_1").
+Los valores numéricos y lógicos se escriben normalmente (1.1, 2, 3, TRUE, FALSE, NA). En cambio, los valores categóricos de encierran entre comillas simples ("Alto", "Bajo", "Sitio_1").
 ```R
 a <- c(1,2,3,4)      # vector numérico
 b <- c("uno","tres","once", NA)  # vector tipo caracter
