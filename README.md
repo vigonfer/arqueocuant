@@ -1,9 +1,25 @@
 #	Uso básico de R en arqueología
 ## 	Por Víctor González Fernández
 
+### Consola
+Una vez instalado, se puede ejecutar código R directamente desde la línea de comandos de la consola (`>_`). Alternativamente, se puede editar un documento de código (_script_) en el editor de R (_|edit|script_), y ejecutar todo o parte del código, usando la combinación de teclas _Ctr-R_. El código para abrir una ventana del editor de código R es:
 ```{r}
-#	Estadística descriptiva de un conjunto de datos
+file.edit("")
 ```
+Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado. 
+
+### Creación de objetos
+R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ellos resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El operador de asignación es "<-". En el siguiente ejemplo, se le asigna a "PI" el valor 3.1417
+
+```{r}
+PI <- 3.1416
+```
+La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola   
+
+La creación de on objeto sucede en el espacio de la memoria de la sesión activa, o "espacio local" (ls)
+
+### Estadística descriptiva de un conjunto de datos
+
 
 ```{r}
 summary(mtcars); plot(mtcars[1:6], pch="*"); numSummary(mtcars)
