@@ -223,31 +223,31 @@ obj[obj$a>2,] # todas las filas para las cuales "a" es mayor a 2
 
 ## Análisis estadísticos
 
-### Estadística descriptiva de un conjunto de datos
+#### Estadística descriptiva de un conjunto de datos
 ```{r}
 summary(mtcars)
 plot(mtcars[1:6], pch="*")
 numSummary(mtcars)
 ```
-### Prueba t de dos muestras
+#### Prueba t de dos muestras
 ```{r}
 t.test(mtcars$mpg~mtcars$am)
 boxplot(mtcars$mpg~mtcars$am, col=8)
 ```
 
-### Prueba t de una muestra
+#### Prueba t de una muestra
 ```{r}
 t.test(mtcars$mpg,alternative='two.sided',mu=26,conf.level=.95)
 hist(mtcars$mpg);abline(v=26, col=2)
 ```
 
-### Anova
+#### Anova
 ```{r}
 summary((aov(mtcars$mpg~mtcars$gear)))
 boxplot(mtcars$mpg~mtcars$gear, col=8)
 ```
 
-### Regresión lineal
+#### Regresión lineal
 ```{r}
 mm <-(mtcars$mpg~mtcars$wt)
 summary(lm(mm))
@@ -255,48 +255,48 @@ plot(mm, col=4)
 abline(lm(mm))
 ```
 
-### Correlación de orden de rangos
+#### Correlación de orden de rangos
 ```{r}
 cor.test(mtcars$mpg,mtcars$hp,method="spearman")
 plot(mtcars$mpg,mtcars$hp,col=4)
 ```
 
-### Análisis jerárquico de agrupamientos
+#### Análisis jerárquico de agrupamientos
 ```{r}
 par(mar=c(2,2,2,7))
 plot(as.dendrogram(hclust(dist(scale(mtcars)))),horiz=TRUE)
 par(mar=c(3,3,3,3))
 ```
 
-### Escalamiento multidimensional
+#### Escalamiento multidimensional
 ```{r}
 m1 <- cmdscale(dist(scale(mtcars)))
 plot(m1,type="n")
 text(m1,rownames(mtcars),col=4)
 ```
 
-### Análisis de componentes principales
+#### Análisis de componentes principales
 ```{r}
 f1 <- princomp(scale(mtcars), cor=TRUE)
 summary(f1)
 biplot(f1)
 ```
 
-### Análisis de agrupamiento por k-medias (k=3)
+#### Análisis de agrupamiento por k-medias (k=3)
 ```{r}
 cl <- kmeans(mtcars,3)
 plot(mtcars$mpg,mtcars$wt,col=cl$cluster, pch=cl$cluster)
 cl
 ```
 
-### Análisis de correspondencia simples
+#### Análisis de correspondencia simples
 ```{r}
 library(ca)
 plot(ca(smoke))
 summary(ca(smoke))
 ```
 
-### Análisis de correspondencia múltiple
+#### Análisis de correspondencia múltiple
 ```{r}
 library(MASS)
 fm <- mjca(farms)
@@ -304,7 +304,7 @@ plot(fm)
 text(fm$rowpcoord,fm$rownames, col=4)
 ```
 
-### Interpolación bicúbica de superficies
+#### Interpolación bicúbica de superficies
 ```{r}
 library(akima)
 data(akima)
@@ -314,7 +314,7 @@ image(ak)
 points(k)
 ```
 
-### Análisis de vecino más cercano
+#### Análisis de vecino más cercano
 ```{r}
 library(spatstat)
 xy <- data.frame(k$x,k$y)
@@ -322,81 +322,81 @@ xyp<-as.ppp(xy,c(0,25,0,20))
 clarkevans.test(xyp)
 ```
 
-### Gráfico de Tallo y hojas desdendente
+#### Gráfico de Tallo y hojas desdendente
 ```{r}
 dt <- cars$dist
 o <- capture.output(stem(dt,scale=2))
 cat(c(o[1:3],rev(o[4:length(o)])),sep="\n")
 ```
 
-### Gráfico de Tallo y hojas espalda con espalda descendente
+#### Gráfico de Tallo y hojas espalda con espalda descendente
 ```{r}
 ou <- capture.output(stem.leaf.backback(dt,-dt+124,depths=F,unit=1))
 cat(rev(ou[3:21]),sep="\n")
 ```
 
-### Tabulación
+#### Tabulación
 ```{r}
 warpbreaks[2:3]
 table(warpbreaks[2:3])
 ```
 
-### Cálculo de porcentajes por niveles (para 3 tipos:F1,F2,CL)
+#### Cálculo de porcentajes por niveles (para 3 tipos:F1,F2,CL)
 ```{r}
 RP <- rowPercents(data.frame(F1=c(5,8,14),F2=c(40,32,13),CL=c(200,34,10)))[,1:3]
 RP
 ```
 
-### Prueba de Chi-cuadrado
+#### Prueba de Chi-cuadrado
 ```{r}
 chisq.test(RP, correct=FALSE)
 library(vcd)
 assocstats(RP)
 ```
 
-### Prueba de Chi-cuadrado contra datos esperados
+#### Prueba de Chi-cuadrado contra datos esperados
 ```
 observado <-c(19,12,7)
 p_esperado<-c(.287,.610,.103)
 chisq.test(observado,p=p_esperado) 
 ```
 
-### Gráfico de Buques de guerra de proporciones por nivel
+#### Gráfico de Buques de guerra de proporciones por nivel
 ```{r}
 library(plotrix)
 battleship.plot(RP, col="3", maxyspan=0.5, border="3")
 ```
 
-### Gráfico de Ford de proporciones por nivel
+#### Gráfico de Ford de proporciones por nivel
 ```{r}
 kiteChart(t(RP[3:1,]),normalize=T,timex=F,ylab="Nivel",main="%",timelabels=c(3:1),shownorm=F)
 ```
 
-### Gráfico de bala para medias
+#### Gráfico de bala para medias
 ```{r}
 source("http://vigonfer.tripod.com/balas.R.txt")
 balas(mtcars$gear,mtcars$mpg)
 ```
 
-### Gráfico de bala para proporciones
+#### Gráfico de bala para proporciones
 ```{r}
 source("http://vigonfer.tripod.com/balaprop.R.txt")
 library(car)
 with(Salaries,balaprop(sex,rank,3))
 ```
 
-### Remuestreo de medianas
+#### Remuestreo de medianas
 ```{r}
 MedA <- sapply(1:1000, function(x){median(sample(mtcars$mpg, replace=TRUE))})
 hist(MedA)
 ```
 
-### Cálculo de cuantiles de una muestra de remuestreo
+#### Cálculo de cuantiles de una muestra de remuestreo
 ```{r}
 quantile(MedA, p=c(.01, .025, .05, .95, .975, .99))
 ```
 
-### Confianza estadística en una baja proporción por ausencia
+#### Confianza estadística en una baja proporción por ausencia
 ```{r}
 n <- 100
 p <- 5
@@ -404,7 +404,7 @@ D7 <- round(1-((1-(p/100))^n),4)
 paste("La conf que hay <",p,"%","por ausencia en muestra n=",n,"es:", D7)
 ```
 
-### Dibujar un punto sobre Google Maps
+#### Dibujar un punto sobre Google Maps
 ```{r}
 library(ggmap)
 qmap(location="UNAL, Bogota",zoom=17,maptype="hybrid")+geom_point(aes(-74.083, 4.64), cex=3, col=4) 
