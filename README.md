@@ -26,10 +26,7 @@ R es un lenguaje interpretado orientado a objetos, de manera que el usuario remi
 ```{r}
 PI <- 3.1416
 ```
-La creación de un objeto del usuario sucede en el espacio de la memoria de la sesión activa, o "espacio local" (`ls()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola. Por ejemplo, `pi` es un objeto que contiene el valor de la constante 
-$$ \pi $$
-$\pi$ (3.1415926535897931)
-
+La creación de un objeto del usuario sucede en el espacio de la memoria de la sesión activa, o "espacio local" (`ls()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que en R se diferencia entre mayúscula y minúscula.
 
 
 ### Estadística descriptiva de un conjunto de datos
