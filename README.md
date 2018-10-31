@@ -6,7 +6,7 @@ Una vez instalado, se puede ejecutar código R directamente desde la línea de c
 ```{r}
 file.edit("")
 ```
-Para salvar un _script_, en un archivo, se usa la combinación _Ctr-S_ y se le da un nombre y la extensión (`.R`). Los archivos .R son archivos `ASCII` y pueden ser editados por cualquier otro editor de texto.
+Para salvar un _script_, en un archivo, se usa la combinación _Ctr-S_ y se le da un nombre y la extensión (`.R`). Los archivos .R son archivos `ASCII` y pueden ser editados por cualquier editor de texto.
 
 Para verificar qué scripts existen en el directorio de trabajo se puede usar el comando
 ```{r}
@@ -19,18 +19,164 @@ dir (pattern=".R")
 #
 Para ejecutar un _script_ se usa el comando _source(Nombre.R)_ 
 #
-Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado.  
+Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado. 
+
+##	Directorio de trabajo
+En una instalación típica en Windows, R fija el directorio de trabajo en "Documentos". Podemos verificar cuál es el directorio de trabajo con el comando:
+```
+getwd()
+```
+que responde algo de esta forma:
+
+`[1] "C:/Users/Nombre/Documents"`
+
+Siempre se puede cambiar el directorio de trabajo con el comando `setwd()`. or ejemplo, para cambiar el directorio de trabajo a una carpeta RDIR, que está en "Documentos" se puede usar:
+```
+setwd("C:/Users/vgonzalez/Documents/RDIR")
+getwd()
+```
+``[1] "C:/Users/vgonzalez/Documents/RDIR"``
+
+Sin embargo, puede ser conveniente fijar la carpeta de trabajo. Para ello podemos editar el archivo _"Rprofile.site"_, ubicado en la carpeta "_etc_" en el subdirectorio de _R_. Normalmente esa carpeta es _"C:\Program Files\R\R-3.4.3\etc"_ (nótese el ángulo de las diagonales). Esta carpeta es probalemente protegida, así que podemos copiar el archivo a otra carpeta, editarlo y luego copiar de vuelta, dando autorización a Windows para sobreescribirlo.
+
+Ya editado, el archivo _Rprofile.site_ con nuevo directorio de trabajo, queda así:
+```
+# Things you might want to change
+setwd("C:\\Users\\Nombre\\Documents\\RDIR")
+# options(papersize="a4")
+# options(editor="notepad")
+# options(pager="internal")
+```
+De allí en adelante, R siempre comenzará con dicha carpeta como directorio de trabajo.
 
 ### Creación de objetos
 R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ellos resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El operador de asignación en R es "`<-`". En el siguiente ejemplo, se le asigna a "PI" el valor 3.1417
 ```{r}
 PI <- 3.1416
 ```
-La creación de un objeto del usuario sucede en el espacio de la memoria de la sesión activa, o "espacio local" (`ls()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que en R se diferencia entre mayúscula y minúscula.
+La creación de un objeto del usuario sucede en el espacio de la memoria de la sesión activa, o "espacio local" (`ls()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula.
 
+### Tipos de objetos en R
+
+Existen numerosas clases de objetos en R. Las clases más simples (atómicas), que forman siempre _vectores atómicos_ de uno o más elementos son: "character" (caracter), "double" (números decimal), "integer" (números enteros) y "logical" (valores lógicos del tipo verdadero/falso:`TRUE/FALSE`). Hay clases de objetos que son estructuras que contienen otros objetos, como "list" (combinación de objetos diferentes), "atomic vector" (listas de objetos de la misma clase), "factor" (vector categórico ordenado), "data.frame" (conjuntos de vectores del mismo tamaño), "matrix" (conjuntos de vectores del mismo tamaño y de la misma clase). Otras clases importantes son  "NULL" (objeto nulo), y "function" (función).
+
+Para verificar a qué clase pertenece un objeto usamos la función `class()`, por ejemplo:
+```
+classs(pi)
+[1] "numeric"
+class(mean)
+[1] "function"
+```
+Usaremos listas o vectores atómicos (factores, numéricos, caracteres, lógicos) para guardar en cada objeto información de cierto tipo sobre conjuntos de casos, pero seguramente querremos combinar varios vectores, en matrices o en conjunto de datos cuando queramos organizar esa información para conjuntos de datos de n variables para n casos. Cuando las variables son de diferentes clases, la información para un conjunto de datos se guarda comunmente en estructuras de la clase _data.frame_.
+
+Cuando los objetos tienen varios elementos, se combinan usando la función `c()` (concatenar). A continuación veremos ejemplos de la combinación de elementos para crear objetos con diferentes tipos de datos.
+
+#### Listas (combinación ordenada de objetos que pueden ser de diferente clase y longitud).
+``
+w <- list(nombre="Fred", numeros=a, matriz=y, edad=5.3, datos=datos)
+``
+#### Vectores atómicos (listas de elementos de la misma clase)
+``
+a <- c(1,2,3,4) 				      # vector numérico
+b <- c("uno","tres","once", NA)  # vector tipo caracter
+c <- c(TRUE,TRUE,FALSE,FALSE)    # vector lógico
+``
+#### Matrices (combinación de objetos organizados en n filas y n columnas, todos de la misma clase)
+``
+y <- matrix(1:20, nrow=5,ncol=4)
+``
+#### Conjunto de datos (combinación de vectores, todos de la misma longitud, que pueden ser de diferentes clases)
+``
+datos <- data.frame(a,b,c)		#numéricos, caracteres, lógicos
+``
+#### Factores (variables que R trata como variables nominales, guardando por un lado valores nominales únicos en un vector de enteros, y por otro un vector interno con secuencias de caracteres de los valores originales, mapeados a los enteros).
+``
+genero <- factor(c(rep("masculino",20),rep("femenino", 30)))
+``
+#### Factores ordenados (variable categórica ordinal)
+``
+genero <- ordered(genero)
+``
+
+### Manipulación de objetos en R
+Para listar los objetos creados disponibles en la sesión actual, usamos el comando `ls()`. Para mostrar los contenidos de un objeto, se usa la función `print(nombre)`. Dado que la función `print()` es la función por defecto, para mostrar un objeto basta con usar su nombre. Si hemos creado el objeto `genero` como se muestra arriba, mostramos los contenidos así:
+
+```
+genero
+[1] masculino masculino masculino masculino masculino
+[6] masculino masculino masculino masculino masculino
+[11] masculino masculino masculino masculino masculino
+[16] masculino masculino masculino masculino masculino
+[21] femenino  femenino  femenino  femenino  femenino 
+[26] femenino  femenino  femenino  femenino  femenino 
+[31] femenino  femenino  femenino  femenino  femenino 
+[36] femenino  femenino  femenino  femenino  femenino 
+[41] femenino  femenino  femenino  femenino  femenino 
+[46] femenino  femenino  femenino  femenino  femenino 
+Levels: femenino < masculino
+```
+Verificamos de qué clase es este objeto:
+```
+class(genero)
+[1] "ordered" "factor"
+```
+Verificamos si el objeto es de la clase "factor":
+```
+is.factor(genero)
+[1] TRUE
+```
+Verificamos si el objeto es de la clase "ordered":
+```
+is.ordered(genero)
+[1] TRUE
+```
+Verificamos la estructura del objeto:
+```
+str(genero)
+Ord.factor w/ 2 levels "femenino"<"masculino": 2 2 2 2 2 2 2 2 2 2 ...
+```
+Verificamos el modo (la forma de guardar datos en memoria)
+```
+obj <- data.frame(a=c(7,3,1.2), b=c("A","B","B"))
+class(obj) # La clase es la propiedad que define la forma de tratar un objeto
+[1] "data.frame"
+mode(obj)  # Un objeto tiene un solo modo posible. O forma de guardar en memoria.
+[1] "list"
+```
+Obtenemos una representación de un objeto en texto ASCII:
+```
+dput(obj)
+structure(list(a = c(7, 3, 1.2), b = structure(c(1L, 2L, 2L), .Label = c("A", 
+"B"), class = "factor")), .Names = c("a", "b"), row.names = c(NA, 
+-3L), class = "data.frame")
+```
+Obtenemos la longitud (número de elementos o componentes) de un objeto:
+```
+length(obj)
+[1] 2
+```
+Obbtenemos los nombres de elementos o componentes:
+```
+names(obj)
+[1] "a" "b"
+```
+Lista objectos del directorio de trabajo:
+```
+ls()
+[1] "A"           "AD"          "D"           "Datos1"      "genero"      "Konsankoro"  "KPNeolithic" "MapaN"       "obj"        
+[10] "obj2"        "p"           "plot"        "PuntosN"     "temp"        "xvar"        "xy"          "yvar"        "zvar"       
+> 
+```
+Borrar un objeto:
+```
+rm(objeto)
+```
+Abrir el editor de datos de R:
+```
+fix(obj) 
+```
 
 ### Estadística descriptiva de un conjunto de datos
-
 
 ```{r}
 summary(mtcars); plot(mtcars[1:6], pch="*"); numSummary(mtcars)
