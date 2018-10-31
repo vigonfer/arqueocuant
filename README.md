@@ -29,10 +29,10 @@ que responde algo de esta forma:
 
 Siempre se puede cambiar el directorio de trabajo con el comando `setwd()`. or ejemplo, para cambiar el directorio de trabajo a una carpeta RDIR, que está en "Documentos" se puede usar:
 ```R
-setwd("C:/Users/vgonzalez/Documents/RDIR")
+setwd("C:/Users/Nombre/Documents/RDIR")
 getwd()
 ```
-```[1] "C:/Users/vgonzalez/Documents/RDIR"```
+```[1] "C:/Users/Nombre/Documents/RDIR"```
 
 Sin embargo, puede ser conveniente fijar la carpeta de trabajo. Para ello podemos editar el archivo _"Rprofile.site"_, ubicado en la carpeta "_etc_" en el subdirectorio de _R_. Normalmente esa carpeta es _"C:\Program Files\R\R-3.4.3\etc"_ (nótese el ángulo de las diagonales). Esta carpeta es probalemente protegida, así que podemos copiar el archivo a otra carpeta, editarlo y luego copiar de vuelta, dando autorización a Windows para sobreescribirlo.
 
