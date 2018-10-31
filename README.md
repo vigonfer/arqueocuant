@@ -58,7 +58,7 @@ La creación de un objeto del usuario sucede en el espacio de la memoria de la s
 
 ### Tipos de objetos en R
 
-Existen numerosas clases de objetos en R. Las clases más simples (atómicas), que forman siempre _vectores atómicos_ de uno o más elementos son: "character" (caracter), "double" (números decimal), "integer" (números enteros) y "logical" (valores lógicos del tipo verdadero/falso:`TRUE/FALSE`). Hay clases de objetos que son estructuras que contienen otros objetos, como "list" (combinación de objetos diferentes), "atomic vector" (listas de objetos de la misma clase), "factor" (vector categórico ordenado), "data.frame" (conjuntos de vectores del mismo tamaño), "matrix" (conjuntos de vectores del mismo tamaño y de la misma clase). Otras clases importantes son  "NULL" (objeto nulo), y "function" (función).
+Existen numerosas clases de objetos en R. Las clases más simples (atómicas), que forman siempre _vectores atómicos_ de uno o más elementos son: "character" (caracter), "double" (números decimal), "integer" (números enteros) y "logical" (valores lógicos del tipo verdadero/falso:`TRUE/FALSE` o valor faltante:`NA`). Hay clases de objetos que son estructuras que contienen otros objetos, como "list" (combinación de objetos diferentes), "atomic vector" (listas de objetos de la misma clase), "factor" (vector categórico ordenado), "data.frame" (conjuntos de vectores del mismo tamaño), "matrix" (conjuntos de vectores del mismo tamaño y de la misma clase). Otras clases importantes son  "NULL" (objeto nulo), y "function" (función).
 
 Para verificar a qué clase pertenece un objeto usamos la función `class()`, por ejemplo:
 ```
@@ -76,11 +76,12 @@ Cuando los objetos tienen varios elementos, se combinan usando la función `c()`
 w <- list(nombre="Fred", numeros=a, matriz=y, edad=5.3, datos=datos)
 ``
 #### Vectores atómicos (listas de elementos de la misma clase)
-``
-a <- c(1,2,3,4) 				      # vector numérico
+Los valores numéricos y lógicos se escriben normalemte (1.1, 2, 3, TRUE, FALSE, NA). En cambio, los valores categóricos de encierran entre comillas simples ("Alto", "Bajo", "Sitio_1").
+```
+a <- c(1,2,3,4)      # vector numérico
 b <- c("uno","tres","once", NA)  # vector tipo caracter
 c <- c(TRUE,TRUE,FALSE,FALSE)    # vector lógico
-``
+```
 #### Matrices (combinación de objetos organizados en n filas y n columnas, todos de la misma clase)
 ``
 y <- matrix(1:20, nrow=5,ncol=4)
@@ -155,26 +156,75 @@ Obtenemos la longitud (número de elementos o componentes) de un objeto:
 length(obj)
 [1] 2
 ```
-Obbtenemos los nombres de elementos o componentes:
+Obtenemos los nombres de elementos o componentes:
 ```
 names(obj)
 [1] "a" "b"
 ```
-Lista objectos del directorio de trabajo:
+Listamos los objectos del directorio de trabajo:
 ```
 ls()
-[1] "A"           "AD"          "D"           "Datos1"      "genero"      "Konsankoro"  "KPNeolithic" "MapaN"       "obj"        
-[10] "obj2"        "p"           "plot"        "PuntosN"     "temp"        "xvar"        "xy"          "yvar"        "zvar"       
-> 
+[1] "A"           "AD"          "D"           "Datos1"      "genero"     "obj"        
+[6] "obj2"        "p"           "plot"        "PuntosN"     "temp"        "xvar"
 ```
-Borrar un objeto:
+Borramos un objeto:
 ```
 rm(objeto)
 ```
-Abrir el editor de datos de R:
+Abrimos el objeto con el editor de datos de R:
 ```
 fix(obj) 
 ```
+#### Acceso a partes de un objeto
+R tiene diferentes modalidades para seleccionar partes relevantes de un objeto. Esto es epecialmente útil para extraer vectores de un conjunto de datos o valores de un vector que cumplan ciertos requisitos.
+
+El comando print() presenta todo el objeto:
+```
+obj
+    a b
+1 7.0 A
+2 3.0 B
+3 1.2 B
+```
+Accedemos a una parte de un objeto que tiene nombre, indicando ese nombre con el prefijo `$`:
+```
+obj$a
+[1] 7.0 3.0 1.2
+```
+Accedemos a una parte de un objeto bidimensional, indicando dos coordenadas entre corchetes cuadrados. Estas coordenadas son de la forma `[fila,columna]` y se seleccionan todas las filas o columnas omitiendo esa coordenada.
+```
+obj[1,1]
+[1] 7
+
+obj[1, ]
+  a b
+1 7 A
+
+obj[ ,1]
+[1] 7.0 3.0 1.2
+
+obj[1:2,1]
+[1] 7 3
+
+obj[2,1:2]
+  a b
+2 3 B
+```
+Extraemos elementos de un objeto usando operadores lógicos: `==` "igual a", `|` "o", `&` "y", `>` "mayor que",`<` "menor que",`==` "igual a", `<=` ("menor o igual a"), `>=` ("mayor o igual a") `!=` ("no igual a"). En los siguientes ejemplos, se seleccionan todas las _filas_ que reunen ciertas condiciones.
+
+```
+obj[obj$b=="B",] # todas las filas para las cuales la variable "b" es "B"
+    a b
+2 3.0 B
+3 1.2 B
+
+obj[obj$a>2,] # todas las filas para las cuales "a" es mayor a 2
+  a b
+1 7 A
+2 3 B
+```
+
+
 
 ### Estadística descriptiva de un conjunto de datos
 
