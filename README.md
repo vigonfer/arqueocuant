@@ -2,11 +2,24 @@
 ## 	Por Víctor González Fernández
 
 ### Consola
-Una vez instalado, se puede ejecutar código R directamente desde la línea de comandos de la consola (`>_`). Alternativamente, se puede editar un documento de código (_script_) en el editor de R (_|edit|script_), y ejecutar todo o parte del código, usando la combinación de teclas _Ctr-R_. El código para abrir una ventana del editor de código R es:
+Una vez instalado, se puede ejecutar código R directamente desde la línea de comandos de la consola (`>_`). Alternativamente, se puede editar un documento de código (_script_) en el editor de R (_|Archivo|Nuevo script_), y ejecutar todo o parte del código, usando la combinación de teclas _Ctr-R_. El código para abrir una ventana del editor de R es:
 ```{r}
 file.edit("")
 ```
-Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado. 
+Para salvar un _script_, en un archivo, se usa la combinación _Ctr-S_ y se le da un nombre y la extensión (`.R`). Los archivos .R son archivos `ASCII` y pueden ser editados por cualquier otro editor de texto.
+
+Para verificar qué scripts existen en el directorio de trabajo se puede usar el comando
+```{r}
+dir() 
+```
+o también: 
+```{r}
+dir (pattern=".R")
+```
+#
+Para ejecutar un _script_ se usa el comando _source(Nombre.R)_ 
+#
+Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado.  
 
 ### Creación de objetos
 R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ellos resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El operador de asignación es "<-". En el siguiente ejemplo, se le asigna a "PI" el valor 3.1417
