@@ -55,7 +55,7 @@ La creación de un objeto del usuario sucede en el espacio de la memoria de la s
 
 ### Tipos de objetos en R
 
-Existen numerosas clases de objetos en R. Las clases más simples (atómicas), que forman siempre _vectores atómicos_ de uno o más elementos son: "character" (caracter), "double" (números decimal), "integer" (números enteros) y "logical" (valores lógicos del tipo verdadero/falso:`TRUE/FALSE` o valor faltante:`NA`). Hay clases de objetos que son estructuras que contienen otros objetos, como "list" (combinación de objetos diferentes), "atomic vector" (listas de objetos de la misma clase), "factor" (vector categórico ordenado), "data.frame" (conjuntos de vectores del mismo tamaño), "matrix" (conjuntos de vectores del mismo tamaño y de la misma clase). Otras clases importantes son  "NULL" (objeto nulo), y "function" (función).
+Existen numerosas clases de objetos en R. Las clases más simples (atómicas), que forman siempre _vectores atómicos_ de uno o más elementos son: "character" (caracter), "double" (número decimal), "integer" (números enteros) y "logical" (valores lógicos del tipo verdadero/falso:`TRUE/FALSE` o valor faltante:`NA`). Hay clases de objetos que son estructuras que contienen otros objetos, como "list" (combinación de objetos diferentes), "atomic vector" (listas de objetos de la misma clase), "factor" (vector categórico ordenado), "data.frame" (conjuntos de vectores del mismo tamaño), "matrix" (conjuntos de vectores del mismo tamaño y de la misma clase). Otras clases importantes son  "NULL" (objeto nulo), y "function" (función).
 
 Para verificar a qué clase pertenece un objeto usamos la función `class()`, por ejemplo:
 ```R
