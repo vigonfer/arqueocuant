@@ -22,14 +22,15 @@ Para ejecutar un _script_ se usa el comando _source(Nombre.R)_
 Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado.  
 
 ### Creación de objetos
-R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ellos resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El operador de asignación es "<-". En el siguiente ejemplo, se le asigna a "PI" el valor 3.1417
-
+R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ellos resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El operador de asignación en R es "`<-`". En el siguiente ejemplo, se le asigna a "PI" el valor 3.1417
 ```{r}
 PI <- 3.1416
 ```
-La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola   
+La creación de un objeto del usuario sucede en el espacio de la memoria de la sesión activa, o "espacio local" (`ls()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola. Por ejemplo, `pi` es un objeto que contiene el valor de la constante 
+$$ \pi $$
+$\pi$ (3.1415926535897931)
 
-La creación de on objeto sucede en el espacio de la memoria de la sesión activa, o "espacio local" (ls)
+
 
 ### Estadística descriptiva de un conjunto de datos
 
