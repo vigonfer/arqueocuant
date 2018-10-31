@@ -1,9 +1,5 @@
-##	Análisis en R en una línea 
-### 	Por Víctor González Fernández - vigonfer@gmail.com
-###	(2017)
-###	Este documento contiene códigos para adelantar 27 diferentes 
-### 	análisis en R, cada uno en una sola línea. Son así ejemplos 
-###	mínimos del código requerido para estos análisis.
+#	Uso básico de R en arqueología
+## 	Por Víctor González Fernández
 
 ```{r}
 #	Estadística descriptiva de un conjunto de datos
