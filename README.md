@@ -61,6 +61,8 @@ Para verificar a qué clase pertenece un objeto usamos la función `class()`, po
 ```R
 classs(pi)
 [1] "numeric"
+```
+```R
 class(mean)
 [1] "function"
 ```
