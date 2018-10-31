@@ -207,7 +207,7 @@ obj[2,1:2]
   a b
 2 3 B
 ```
-Extraemos elementos de un objeto usando operadores lógicos: `==` "igual a", `|` "o", `&` "y", `>` "mayor que",`<` "menor que",`==` "igual a", `<=` ("menor o igual a"), `>=` ("mayor o igual a") `!=` ("no igual a"). En los siguientes ejemplos, se seleccionan todas las _filas_ que reunen ciertas condiciones.
+Extraemos elementos de un objeto usando operadores lógicos: `==` "igual a", `|` "o", `&` "y", `>` "mayor que",`<` "menor que", `<=` ("menor o igual a"), `>=` ("mayor o igual a") `!=` ("no igual a"). En los siguientes ejemplos, se seleccionan todas las _filas_ que reunen ciertas condiciones.
 
 ```
 obj[obj$b=="B",] # todas las filas para las cuales la variable "b" es "B"
