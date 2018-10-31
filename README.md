@@ -163,8 +163,8 @@ names(obj)
 Listamos los objectos del directorio de trabajo:
 ```R
 ls()
-[1] "A"           "AD"          "D"           "Datos1"      "genero"     "obj"        
-[6] "obj2"        "p"           "plot"        "PuntosN"     "temp"        "xvar"
+[1] "A"       "AD"        "D"        "Datos1"    "genero"    "obj"        
+[7] "obj2"     "p"        "plot"     "PuntosN"   "temp"      "xvar"
 ```
 Borramos un objeto:
 ```R
