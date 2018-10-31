@@ -16,10 +16,7 @@ o también:
 ```{r}
 dir (pattern=".R")
 ```
-#
-Para ejecutar un _script_ se usa el comando _source(Nombre.R)_ 
-#
-Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado. 
+Para ejecutar un _script_ se usa el comando _source(Nombre.R)_. Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado. 
 
 ##	Directorio de trabajo
 En una instalación típica en Windows, R fija el directorio de trabajo en "Documentos". Podemos verificar cuál es el directorio de trabajo con el comando:
@@ -28,14 +25,14 @@ getwd()
 ```
 que responde algo de esta forma:
 
-`[1] "C:/Users/Nombre/Documents"`
+```[1] "C:/Users/Nombre/Documents"```
 
 Siempre se puede cambiar el directorio de trabajo con el comando `setwd()`. or ejemplo, para cambiar el directorio de trabajo a una carpeta RDIR, que está en "Documentos" se puede usar:
 ```
 setwd("C:/Users/vgonzalez/Documents/RDIR")
 getwd()
 ```
-``[1] "C:/Users/vgonzalez/Documents/RDIR"``
+```[1] "C:/Users/vgonzalez/Documents/RDIR"```
 
 Sin embargo, puede ser conveniente fijar la carpeta de trabajo. Para ello podemos editar el archivo _"Rprofile.site"_, ubicado en la carpeta "_etc_" en el subdirectorio de _R_. Normalmente esa carpeta es _"C:\Program Files\R\R-3.4.3\etc"_ (nótese el ángulo de las diagonales). Esta carpeta es probalemente protegida, así que podemos copiar el archivo a otra carpeta, editarlo y luego copiar de vuelta, dando autorización a Windows para sobreescribirlo.
 
@@ -72,9 +69,9 @@ Usaremos listas o vectores atómicos (factores, numéricos, caracteres, lógicos
 Cuando los objetos tienen varios elementos, se combinan usando la función `c()` (concatenar). A continuación veremos ejemplos de la combinación de elementos para crear objetos con diferentes tipos de datos.
 
 #### Listas (combinación ordenada de objetos que pueden ser de diferente clase y longitud).
-``
+```
 w <- list(nombre="Fred", numeros=a, matriz=y, edad=5.3, datos=datos)
-``
+```
 #### Vectores atómicos (listas de elementos de la misma clase)
 Los valores numéricos y lógicos se escriben normalemte (1.1, 2, 3, TRUE, FALSE, NA). En cambio, los valores categóricos de encierran entre comillas simples ("Alto", "Bajo", "Sitio_1").
 ```
@@ -83,21 +80,21 @@ b <- c("uno","tres","once", NA)  # vector tipo caracter
 c <- c(TRUE,TRUE,FALSE,FALSE)    # vector lógico
 ```
 #### Matrices (combinación de objetos organizados en n filas y n columnas, todos de la misma clase)
-``
+```
 y <- matrix(1:20, nrow=5,ncol=4)
-``
+```
 #### Conjunto de datos (combinación de vectores, todos de la misma longitud, que pueden ser de diferentes clases)
-``
+```
 datos <- data.frame(a,b,c)		#numéricos, caracteres, lógicos
-``
+```
 #### Factores (variables que R trata como variables nominales, guardando por un lado valores nominales únicos en un vector de enteros, y por otro un vector interno con secuencias de caracteres de los valores originales, mapeados a los enteros).
-``
+```
 genero <- factor(c(rep("masculino",20),rep("femenino", 30)))
-``
+```
 #### Factores ordenados (variable categórica ordinal)
-``
+```
 genero <- ordered(genero)
-``
+```
 
 ### Manipulación de objetos en R
 Para listar los objetos creados disponibles en la sesión actual, usamos el comando `ls()`. Para mostrar los contenidos de un objeto, se usa la función `print(nombre)`. Dado que la función `print()` es la función por defecto, para mostrar un objeto basta con usar su nombre. Si hemos creado el objeto `genero` como se muestra arriba, mostramos los contenidos así:
@@ -224,239 +221,198 @@ obj[obj$a>2,] # todas las filas para las cuales "a" es mayor a 2
 2 3 B
 ```
 
-
+## Análisis estadísticos
 
 ### Estadística descriptiva de un conjunto de datos
-
 ```{r}
-summary(mtcars); plot(mtcars[1:6], pch="*"); numSummary(mtcars)
+summary(mtcars)
+plot(mtcars[1:6], pch="*")
+numSummary(mtcars)
+```
+### Prueba t de dos muestras
+```{r}
+t.test(mtcars$mpg~mtcars$am)
+boxplot(mtcars$mpg~mtcars$am, col=8)
 ```
 
+### Prueba t de una muestra
 ```{r}
-#	Prueba t de dos muestras
+t.test(mtcars$mpg,alternative='two.sided',mu=26,conf.level=.95)
+hist(mtcars$mpg);abline(v=26, col=2)
 ```
 
+### Anova
 ```{r}
-t.test(mtcars$mpg~mtcars$am); boxplot(mtcars$mpg~mtcars$am, col=8)
+summary((aov(mtcars$mpg~mtcars$gear)))
+boxplot(mtcars$mpg~mtcars$gear, col=8)
 ```
 
+### Regresión lineal
 ```{r}
-#	Prueba t de una muestra
+mm <-(mtcars$mpg~mtcars$wt)
+summary(lm(mm))
+plot(mm, col=4)
+abline(lm(mm))
 ```
 
+### Correlación de orden de rangos
 ```{r}
-t.test(mtcars$mpg,alternative='two.sided',mu=26,conf.level=.95);hist(mtcars$mpg);abline(v=26, col=2)
+cor.test(mtcars$mpg,mtcars$hp,method="spearman")
+plot(mtcars$mpg,mtcars$hp,col=4)
 ```
 
+### Análisis jerárquico de agrupamientos
 ```{r}
-# 	Anova
+par(mar=c(2,2,2,7))
+plot(as.dendrogram(hclust(dist(scale(mtcars)))),horiz=TRUE)
+par(mar=c(3,3,3,3))
 ```
 
+### Escalamiento multidimensional
 ```{r}
-summary((aov(mtcars$mpg~mtcars$gear)));boxplot(mtcars$mpg~mtcars$gear, col=8)
+m1 <- cmdscale(dist(scale(mtcars)))
+plot(m1,type="n")
+text(m1,rownames(mtcars),col=4)
 ```
 
+### Análisis de componentes principales
 ```{r}
-#	Regresión lineal
+f1 <- princomp(scale(mtcars), cor=TRUE)
+summary(f1)
+biplot(f1)
 ```
 
+### Análisis de agrupamiento por k-medias (k=3)
 ```{r}
-mm <-(mtcars$mpg~mtcars$wt);summary(lm(mm));plot(mm, col=4);abline(lm(mm))
+cl <- kmeans(mtcars,3)
+plot(mtcars$mpg,mtcars$wt,col=cl$cluster, pch=cl$cluster)
+cl
 ```
 
+### Análisis de correspondencia simples
 ```{r}
-#	Correlación de orden de rangos
+library(ca)
+plot(ca(smoke))
+summary(ca(smoke))
 ```
 
+### Análisis de correspondencia múltiple
 ```{r}
-cor.test(mtcars$mpg,mtcars$hp,method="spearman");plot(mtcars$mpg,mtcars$hp,col=4)
+library(MASS)
+fm <- mjca(farms)
+plot(fm)
+text(fm$rowpcoord,fm$rownames, col=4)
 ```
 
+### Interpolación bicúbica de superficies
 ```{r}
-# 	Análisis jerárquico de agrupamientos
+library(akima)
+data(akima)
+k <- akima
+ak <- interp.new(k$x,k$y,k$z)
+image(ak)
+points(k)
 ```
 
+### Análisis de vecino más cercano
 ```{r}
-par(mar=c(2,2,2,7)); plot(as.dendrogram(hclust(dist(scale(mtcars)))),horiz=TRUE);par(mar=c(3,3,3,3))
+library(spatstat)
+xy <- data.frame(k$x,k$y)
+xyp<-as.ppp(xy,c(0,25,0,20))
+clarkevans.test(xyp)
 ```
 
+### Gráfico de Tallo y hojas desdendente
 ```{r}
-#	Escalamiento multidimensional
+dt <- cars$dist
+o <- capture.output(stem(dt,scale=2))
+cat(c(o[1:3],rev(o[4:length(o)])),sep="\n")
 ```
 
+### Gráfico de Tallo y hojas espalda con espalda descendente
 ```{r}
-m1 <- cmdscale(dist(scale(mtcars)));plot(m1,type="n");text(m1,rownames(mtcars),col=4)
+ou <- capture.output(stem.leaf.backback(dt,-dt+124,depths=F,unit=1))
+cat(rev(ou[3:21]),sep="\n")
 ```
 
+### Tabulación
 ```{r}
-#	Análisis de componentes principales
+warpbreaks[2:3]
+table(warpbreaks[2:3])
 ```
 
+### Cálculo de porcentajes por niveles (para 3 tipos:F1,F2,CL)
 ```{r}
-f1 <- princomp(scale(mtcars), cor=TRUE); summary(f1); biplot(f1)
+RP <- rowPercents(data.frame(F1=c(5,8,14),F2=c(40,32,13),CL=c(200,34,10)))[,1:3]
+RP
 ```
 
+### Prueba de Chi-cuadrado
 ```{r}
-#	Análisis de agrupamiento por k-medias (k=3)
+chisq.test(RP, correct=FALSE)
+library(vcd)
+assocstats(RP)
 ```
 
-```{r}
-cl <- kmeans(mtcars,3); plot(mtcars$mpg,mtcars$wt,col=cl$cluster, pch=cl$cluster);cl
+### Prueba de Chi-cuadrado contra datos esperados
+```
+observado <-c(19,12,7)
+p_esperado<-c(.287,.610,.103)
+chisq.test(observado,p=p_esperado) 
 ```
 
+### Gráfico de Buques de guerra de proporciones por nivel
 ```{r}
-#	Análisis de correspondencia simples
+library(plotrix)
+battleship.plot(RP, col="3", maxyspan=0.5, border="3")
 ```
 
-```{r}
-library(ca); plot(ca(smoke)); summary(ca(smoke))
-```
-
-```{r}
-#	Análisis de correspondencia múltiple
-```
-
-```{r}
-library(MASS); fm <- mjca(farms); plot(fm); text(fm$rowpcoord,fm$rownames, col=4)
-```
-
-```{r}
-#	Interpolación bicúbica de superficies
-```
-
-```{r}
-library(akima);data(akima);k<-akima; ak<-interp.new(k$x,k$y,k$z);image(ak);points(k)
-```
-
-```{r}
-#	Análisis de vecino más cercano
-```
-
-```{r}
-library(spatstat);xy<-data.frame(k$x,k$y);xyp<-as.ppp(xy,c(0,25,0,20));clarkevans.test(xyp)
-```
-
-```{r}
-#	Gráfico de Tallo y hojas desdendente
-```
-
-```{r}
-dt<-cars$dist;o<-capture.output(stem(dt,scale=2));cat(c(o[1:3],rev(o[4:length(o)])),sep="\n")
-```
-
-```{r}
-#	Gráfico de Tallo y hojas espalda con espalda descendente
-```
-
-```{r}
-ou<-capture.output(stem.leaf.backback(dt,-dt+124,depths=F,unit=1));cat(rev(ou[3:21]),sep="\n")
-```
-
-```{r}
-#	Tabulación
-```
-
-```{r}
-warpbreaks[2:3]; table(warpbreaks[2:3])
-```
-
-```{r}
-#	Cálculo de porcentajes por niveles (para 3 tipos:F1,F2,CL)
-```
-
-```{r}
-RP <- rowPercents(data.frame(F1=c(5,8,14),F2=c(40,32,13),CL=c(200,34,10)))[,1:3]; RP
-```
-
-```{r}
-#	Prueba de Chi-cuadrado
-```
-
-```{r}
-chisq.test(RP, correct=FALSE);library(vcd); assocstats(RP)
-```
-
-```{r}
-#	Prueba de Chi-cuadrado contra datos esperados
-```
-
-```{r}
-observado <-c(19,12,7);p_esperado<-c(.287,.610,.103);chisq.test(observado,p=p_esperado) 
-```
-
-```{r}
-#	Gráfico de Buques de guerra de proporciones por nivel
-```
-
-```{r}
-library(plotrix); battleship.plot(RP, col="3", maxyspan=0.5, border="3")
-```
-
-```{r}
-#	Gráfico de Ford de proporciones por nivel
-```
-
+### Gráfico de Ford de proporciones por nivel
 ```{r}
 kiteChart(t(RP[3:1,]),normalize=T,timex=F,ylab="Nivel",main="%",timelabels=c(3:1),shownorm=F)
 ```
 
+### Gráfico de bala para medias
 ```{r}
-#	Gráfico de bala para medias
+source("http://vigonfer.tripod.com/balas.R.txt")
+balas(mtcars$gear,mtcars$mpg)
 ```
 
+### Gráfico de bala para proporciones
 ```{r}
-source("http://vigonfer.tripod.com/balas.R.txt"); balas(mtcars$gear,mtcars$mpg)
+source("http://vigonfer.tripod.com/balaprop.R.txt")
+library(car)
+with(Salaries,balaprop(sex,rank,3))
 ```
 
+### Remuestreo de medianas
 ```{r}
-#	Gráfico de bala para proporciones
+MedA <- sapply(1:1000, function(x){median(sample(mtcars$mpg, replace=TRUE))})
+hist(MedA)
 ```
 
-```{r}
-source("http://vigonfer.tripod.com/balaprop.R.txt");library(car);with(Salaries,balaprop(sex,rank,3))
-```
-
-```{r}
-#	Remuestreo de medianas
-```
-
-```{r}
-MedA <- sapply(1:1000, function(x){median(sample(mtcars$mpg, replace=TRUE))});hist(MedA)
-```
-
-```{r}
-#	Cálculo de cuantiles de una muestra de remuestreo
-```
-
+### Cálculo de cuantiles de una muestra de remuestreo
 ```{r}
 quantile(MedA, p=c(.01, .025, .05, .95, .975, .99))
 ```
 
+### Confianza estadística en una baja proporción por ausencia
 ```{r}
-#	Confianza estadística en una baja proporción por ausencia
+n <- 100
+p <- 5
+D7 <- round(1-((1-(p/100))^n),4)
+paste("La conf que hay <",p,"%","por ausencia en muestra n=",n,"es:", D7)
 ```
 
+### Dibujar un punto sobre Google Maps
 ```{r}
-n=100;p=5;D7=round(1-((1-(p/100))^n),4);paste("La conf que hay <",p,"%","por ausencia en muestra n=",n,"es:",
-   D7)
+library(ggmap)
+qmap(location="UNAL, Bogota",zoom=17,maptype="hybrid")+geom_point(aes(-74.083, 4.64), cex=3, col=4) 
 ```
 
-```{r}
-#	Dibujar un punto sobre Google Maps
-```
 
-```{r}
-library(ggmap);qmap(location="UNAL, Bogota",zoom=17,maptype="hybrid")+geom_point(aes(-74.083, 4.64),cex=3,
-  col=4) 
-```
 
-```{r}
-#
-```
 
-```{r}
-##
-```
 
 
 ## Welcome to GitHub Pages
