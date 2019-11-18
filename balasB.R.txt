@@ -1,0 +1,41 @@
+###
+#
+#	Definicion de la función "balasB"
+#	Víctor González F.
+#
+# Para dibujar gráficos de bala (Drennan 2009), en R base.
+# Sintaxis: balas(var.categorica, var.numérica, color, ancho)
+#
+# Requiere:
+library(plyr)
+#
+# Definición:
+#######################
+balasB <- function(cat,num,col=1,an=1) {
+categorias = factor(cat)
+catn <- length(levels(categorias))
+T = data.frame(categorias,num)
+TR = ddply(T, "categorias", summarise,
+               N    = length(num),
+               media = mean(num),
+               sd   = sd(num),
+               ser  = sd / sqrt(N))
+TR$p80 = qt(0.90,  TR$N-1)
+TR$p95 = qt(0.975, TR$N-1)
+TR$p99 = qt(0.995, TR$N-1)
+plot(1:catn,TR$media,pch=3,xlab=deparse(substitute(cat)),ylab=as.character(substitute(num)),xaxt="n",xlim=c(0.5,catn+.5),
+    ylim=c(min(TR$media-1.1*TR$p99*TR$ser),max((TR$media+1.1*TR$p99*TR$ser))), cex=2.5*an, col=col)
+arrows(1:catn,TR$media-TR$ser*TR$p80,1:catn,TR$media+TR$ser*TR$p80,length=.0,angle=90,code=3,lend=1,lwd=12*an, col=col)
+arrows(1:catn,TR$media-TR$ser*TR$p95,1:catn,TR$media+TR$ser*TR$p95,length=.0,angle=90,code=3,lend=1,lwd=6*an, col=col)
+arrows(1:catn,TR$media-TR$ser*TR$p99,1:catn,TR$media+TR$ser*TR$p99,length=.0,angle=90,code=3,lend=1,lwd=3*an, col=col)
+axis(side=1,at=1:catn,labels=TR$categorias)
+}
+#######################
+#
+#
+# Ejemplo: 
+#attach(mtcars)
+#balasB(gear,mpg)
+#balasB(gear,mpg,col="darkblue",an=2)
+#
+#
