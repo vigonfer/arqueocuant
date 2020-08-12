@@ -2,7 +2,7 @@
 ## 	Por Víctor González Fernández
 
 ### Consola
-Una vez instalado, se puede ejecutar código R directamente desde la línea de comandos de la consola (`>_`). Alternativamente, se puede editar un documento de código (_script_) en el editor de R (_|Archivo|Nuevo script_), y ejecutar todo o parte del código, usando la combinación de teclas _Ctr-R_. El código para abrir una ventana del editor de R es:
+Una vez instalado, se puede ejecutar código en R directamente desde la línea de comandos de la consola (`>_`). Alternativamente, se puede editar un documento de código (_script_) en el editor de R (`|Archivo|Nuevo script`), y ejecutar todo o parte del código, usando la combinación de teclas _Ctr-R_. El código para abrir una ventana del editor de R es:
 ```R
 file.edit("")
 ```
@@ -16,7 +16,12 @@ o también:
 ```R
 dir (pattern=".R")
 ```
-Para ejecutar un _script_ se usa el comando _`source(Nombre.R)`_. Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado. 
+Para ejecutar un _script_ se usa el comando `source(Nombre.R)`. Al editar documentos de código, se puede usar el operador `#` para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado.
+
+##	Paquetes
+Además de las funciones que vienen con las instalación básica de R o _"R base"_, se pueden usar funciones que vienen en numerosos paquetes disponibles en el sitio de R, y que se pueden instalar y cargar directamente desde la consola. 
+Para cargar un paquete, se usa la función `library(Nombre)`. Si intenta cargar un paquete que no está instalado, R da un error. Para instalar un paquete, se usa la función `install.packages("Nombre")`. Una página para ayudar a encontrar paquetes útiles es https://rseek.org/.   
+
 
 ##	Directorio de trabajo
 En una instalación típica en Windows, R fija el directorio de trabajo en "Documentos". Podemos verificar cuál es el directorio de trabajo con el comando:
@@ -27,16 +32,16 @@ que responde algo de esta forma:
 
 ```[1] "C:/Users/Nombre/Documents"```
 
-Siempre se puede cambiar el directorio de trabajo con el comando `setwd()`. Por ejemplo, para cambiar el directorio de trabajo a una carpeta RDIR, que está en "Documentos" se puede usar:
+Siempre se puede cambiar el directorio de trabajo con el comando `setwd()`. Por ejemplo, para cambiar el directorio de trabajo a una carpeta "RDIR", que está en "Documentos" se puede usar:
 ```R
 setwd("C:/Users/Nombre/Documents/RDIR")
 getwd()
 ```
 ```[1] "C:/Users/Nombre/Documents/RDIR"```
 
-Sin embargo, puede ser conveniente fijar la carpeta de trabajo. Para ello podemos editar el archivo _"Rprofile.site"_, ubicado en la carpeta "_etc_" en el subdirectorio de _R_. Normalmente esa carpeta es _"C:\Program Files\R\R-3.4.3\etc"_ (nótese el ángulo de las diagonales. R acepta`/` o` \\`). Esta carpeta es probalemente protegida, así que podemos copiar el archivo a otra carpeta, editarlo y luego copiar de vuelta, dando autorización a Windows para sobreescribirlo.
+Sin embargo, puede ser conveniente fijar la carpeta de trabajo. Para ello podemos editar el archivo _"Rprofile.site"_, ubicado en la carpeta "_etc_" en el subdirectorio de _R_. Normalmente esa carpeta es _"C:\Program Files\R\R-3.4.3\etc"_ (nótese el ángulo de las diagonales. R acepta `/` o `\\`). Esta carpeta es probablemente protegida, así que podemos copiar el archivo a otra carpeta, editarlo y luego copiarlo de vuelta, dando autorización a Windows para sobreescribirlo.
 
-Ya editado, el archivo _Rprofile.site_ con nuevo directorio de trabajo, queda así:
+Ya editado, el archivo _Rprofile.site_ indicando el nuevo directorio de trabajo, queda así:
 ```R
 # Things you might want to change
 setwd("C:\\Users\\Nombre\\Documents\\RDIR")
@@ -47,11 +52,11 @@ setwd("C:\\Users\\Nombre\\Documents\\RDIR")
 De allí en adelante, R siempre comenzará con dicha carpeta como directorio de trabajo.
 
 ### Creación de objetos
-R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ellos resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El operador de asignación en R es "`<-`". En el siguiente ejemplo, se le asigna a "PI" el valor 3.1416
+R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ello resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El principal operador de asignación en R es "`<-`". Otro operador de asignación es `=`, que se usa para asignar valores dentro de la ejecución de funciones y que no debe confundirse con `==` que es el operador lógico de igualdad. En el siguiente ejemplo, se le asigna a "PI" el valor 3.1416
 ```R
 PI <- 3.1416
 ```
-La creación de un objeto por el usuario sucede en el espacio de la memoria de la sesión activa (cuyos objetos se listan con `ls()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula.
+La creación de un objeto por el usuario sucede en el espacio de la memoria de la sesión activa (cuyos objetos se listan con `ls()` o `dir()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula.
 
 ### Tipos de objetos en R
 
@@ -316,14 +321,14 @@ mtcars$CL <- CL$cluster
 with(mtcars, plot(mpg, wt, col=CL, pch=CL))
 ```
 
-#### Análisis de correspondencia simples
+#### Análisis de correspondencia simple
 ```R
 library(ca)
 plot(ca(smoke))
 summary(ca(smoke))
 ```
 
-#### Análisis de correspondencia múltiple
+#### Análisis de correspondencias múltiples
 ```R
 library(MASS)
 fm <- mjca(farms)
@@ -336,7 +341,7 @@ text(fm$rowpcoord,fm$rownames, col=4)
 library(akima)
 data(akima)
 k <- akima
-ak <- interp.new(k$x,k$y,k$z)
+ak <- interp(k$x,k$y,k$z)
 image(ak)
 points(k)
 ```
@@ -345,21 +350,21 @@ points(k)
 ```R
 library(spatstat)
 xy <- data.frame(k$x,k$y)
-xyp<-as.ppp(xy,c(0,25,0,20))
+xyp <- as.ppp(xy, c(0,25,0,20))
 clarkevans.test(xyp)
 ```
 
 #### Gráfico de Tallo y hojas desdendente
 ```R
-dt <- cars$dist
-o <- capture.output(stem(dt,scale=2))
-cat(c(o[1:3],rev(o[4:length(o)])),sep="\n")
+D <- cars$dist
+cat(rev(capture.output(stem(D,scale=2))),sep="\n")
 ```
 
 #### Gráfico de Tallo y hojas espalda con espalda descendente
 ```R
-ou <- capture.output(stem.leaf.backback(dt,-dt+124,depths=F,unit=1))
-cat(rev(ou[3:21]),sep="\n")
+library(aplpack)
+D2 <- D*-1.1+140 # Esto crea otro vector
+cat(rev(capture.output(stem.leaf.backback(D,D2,depths=F,unit=1))),sep="\n")
 ```
 
 #### Tabulación
@@ -383,9 +388,9 @@ assocstats(RP)
 
 #### Prueba de Chi-cuadrado contra datos esperados
 ```R
-observado <-c(19,12,7)
-p_esperado<-c(.287,.610,.103)
-chisq.test(observado,p=p_esperado) 
+observado <- c(19,12,7)
+p_esperado <- c(.287,.610,.103)
+chisq.test(observado, p=p_esperado) 
 ```
 
 #### Gráfico de Buques de guerra de proporciones por nivel
@@ -396,21 +401,21 @@ battleship.plot(RP, col="3", maxyspan=0.5, border="3")
 
 #### Gráfico de Ford de proporciones por nivel
 ```R
-kiteChart(t(RP[3:1,]),normalize=T,timex=F,ylab="Nivel", 
-   main="%",timelabels=c(3:1),shownorm=F)
+kiteChart(t(RP[3:1,]), normalize=T, timex=F, ylab="Nivel", main="%",
+ timelabels=c(3:1), shownorm=F)
 ```
 
 #### Gráfico de bala para medias
 ```R
-source("http://vigonfer.tripod.com/balas.R.txt")
-balas(mtcars$gear,mtcars$mpg)
+source("http://vigonfer.tripod.com/balasM.txt")
+with(mtcars, balasM(gear,mpg))
 ```
 
 #### Gráfico de bala para proporciones
 ```R
-source("http://vigonfer.tripod.com/balaprop.R.txt")
+source("http://vigonfer.tripod.com/balasP.txt")
 library(car)
-with(Salaries,balaprop(sex,rank,3))
+with(Salaries, balasP(sex[rank=="Prof"], main="Profesores titulares"))
 ```
 
 #### Remuestreo de medianas
@@ -429,7 +434,8 @@ quantile(MedA, p=c(.01, .025, .05, .95, .975, .99))
 n <- 100
 p <- 5
 D7 <- round(1-((1-(p/100))^n),4)
-paste("La conf que hay <",p,"%","por ausencia en muestra n=",n,"es:", D7)
+paste("La confianza es del", D7*100,"% de que una categoría ausente",
+"en la muestra aleatoria de tamaño n=", n, "es <",p,"%.")
 ```
 
 #### Dibujar un punto sobre Google Maps
