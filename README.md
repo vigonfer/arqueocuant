@@ -16,10 +16,10 @@ o también:
 ```R
 dir (pattern=".R")
 ```
-Para ejecutar un _script_ se usa el comando `source(Nombre.R)`. Al editar documentos de código, se puede usar el operador `#` para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado.
+Para ejecutar un _script_ sin abrirlo en el editor se usa el comando `source(Nombre.R)`. Al editar documentos de código, se puede usar el operador `#` para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado.
 
 ##	Paquetes
-Además de las funciones que vienen con las instalación básica de R o _"R base"_, se pueden usar funciones que vienen en numerosos paquetes disponibles en el sitio de R, y que se pueden instalar y cargar directamente desde la consola. 
+Además de las funciones que vienen con la instalación básica de R o _"R base"_, se pueden usar funciones que vienen en numerosos paquetes disponibles en el sitio de R, y que se pueden instalar y cargar directamente desde la consola. 
 Para cargar un paquete, se usa la función `library(Nombre)`. Si intenta cargar un paquete que no está instalado, R da un error. Para instalar un paquete, se usa la función `install.packages("Nombre")`. Una página para ayudar a encontrar paquetes útiles es <https://rseek.org/>.   
 
 
