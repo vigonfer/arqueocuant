@@ -197,6 +197,15 @@ obj[[1]]
 [1] 7.0 3.0 1.2
 ```
 
+Extraemos todo un componente de un objeto con el número de ese componente entre corchetes simples:
+```R
+obj[1]
+    a
+1 7.0
+2 3.0
+3 1.2
+```
+
 Accedemos a una parte de un objeto bidimensional, indicando dos coordenadas entre corchetes. Estas coordenadas son de la forma `[fila,columna]` y se seleccionan todas las filas o todas las columnas omitiendo información para esa coordenada.
 ```R
 obj[1,1]
