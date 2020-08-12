@@ -20,7 +20,7 @@ Para ejecutar un _script_ sin abrirlo en el editor se usa el comando `source(Nom
 
 ##	Paquetes
 Además de las funciones que vienen con la instalación básica de R o _"R base"_, se pueden usar funciones que vienen en numerosos paquetes disponibles en el sitio de R, y que se pueden instalar y cargar directamente desde la consola. 
-Para cargar un paquete, se usa la función `library(Nombre)`. Si intenta cargar un paquete que no está instalado, R da un error. Para instalar un paquete, se usa la función `install.packages("Nombre")`. Una página para ayudar a encontrar paquetes útiles es <https://rseek.org/>.   
+Para cargar un paquete, se usa la función `library(Nombre)`. Si intenta cargar un paquete que no está instalado, R reporta un error. Para instalar un paquete, use la función `install.packages("Nombre")`. Una página para ayudar a encontrar paquetes útiles es <https://rseek.org/>.   
 
 
 ##	Directorio de trabajo
