@@ -113,7 +113,7 @@ genero <- ordered(genero)
 ```
 
 ### Manipulación de objetos en R
-Para listar los objetos creados disponibles en la sesión actual, usamos el comando `ls()` o  `dir()`. Para mostrar los contenidos de un objeto, se usa la función `print(nombre)`. Dado que la función `print()` es la función que R usa por defecto, para mostrar un objeto basta con usar su nombre. Si hemos creado el objeto `genero` como se muestra arriba, mostramos los contenidos así:
+Para listar los objetos creados disponibles en la sesión actual, usamos el comando `ls()`. Para mostrar los contenidos de un objeto, se usa la función `print(nombre)`. Dado que la función `print()` es la función que R usa por defecto, para mostrar un objeto basta con usar su nombre. Si hemos creado el objeto `genero` como se muestra arriba, mostramos los contenidos así:
 
 ```R
 genero
