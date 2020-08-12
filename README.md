@@ -438,8 +438,10 @@ paste("La confianza es del", D7*100,"% de que una categoría ausente",
 "en la muestra aleatoria de tamaño n=", n, "es <",p,"%.")
 ```
 
-#### Dibujar un punto sobre Google Maps
+#### Dibujar un punto sobre un mapa
 ```R
 library(ggmap)
-qmap(location="UNAL, Bogota",zoom=17,maptype="hybrid")+geom_point(aes(-74.083, 4.64), cex=3, col=4) 
+bbox <- c(left=-74.10, bottom=4.62, right=-74.07, top=4.65)
+ggmap(get_stamenmap(bbox, zoom = 15))+ 
+geom_point(aes(-74.083, 4.64), cex=5, col=2) 
 ```
