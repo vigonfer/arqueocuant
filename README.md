@@ -56,13 +56,13 @@ R es un lenguaje interpretado orientado a objetos, de manera que el usuario remi
 ```R
 PI <- 3.1416
 ```
-La creación de un objeto por el usuario sucede en el espacio de la memoria de la sesión activa (cuyos objetos se listan con `ls()` o `dir()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula. 
+La creación de un objeto por el usuario sucede en el espacio de la memoria de la sesión activa (cuyos objetos se listan con `ls()` u `objects()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula. 
 
 Para guardar un objeto en un archivo, se usa `saveRDS()` así:
 ```R
 saveRDS(objeto, "archivo.rds")
 ```
-Y para leer un objeto R que se ha guardado en un archivo se usa `readRDS()` así:
+Y para leer un objeto R que se ha guardado en un archivo (normalmente de extensión `.rds`) se usa `readRDS()` así:
 ```R
 objeto <- readRDS("archivo.rds")
 ```
