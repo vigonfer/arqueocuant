@@ -228,16 +228,19 @@ obj[obj$a>2, ] # todas las filas para las cuales "a" es mayor a 2
 1 7 A
 2 3 B
 
-obj[ ,7] # todas las columnas para las cuales
-  a b
-1 7 A
-2 3 B
+obj[  ,obj[1,]>1] # todas las columnas para las cuales la fila 1 es mayor a 1
+    a b
+1 7.0 A
+2 3.0 B
+3 1.2 B
 ```
 
 ## Análisis estadísticos
+Los siguientes son ejemplos mínimos de variados análisis estadísticos en R.
 
 #### Estadística descriptiva de un conjunto de datos
 ```R
+library(RcmdrMisc)
 summary(mtcars)
 plot(mtcars[1:6], pch="*")
 numSummary(mtcars)
