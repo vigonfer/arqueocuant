@@ -149,7 +149,7 @@ Verificamos la estructura del objeto:
 str(genero)
 Ord.factor w/ 2 levels "femenino"<"masculino": 2 2 2 2 2 2 2 2 2 2 ...
 ```
-Verificamos el modo (la forma de guardar datos en memoria)
+Creamos un objeto y verificamos clase y modo (la forma de guardar datos en memoria)
 ```R
 obj <- data.frame(a=c(7,3,1.2), b=c("A","B","B"))
 class(obj) # La clase es la propiedad que define la forma de tratar un objeto
