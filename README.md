@@ -16,7 +16,7 @@ o también:
 ```R
 dir (pattern=".R")
 ```
-Para ejecutar un _script_ se usa el comando _source(Nombre.R)_. Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado. 
+Para ejecutar un _script_ se usa el comando _`source(Nombre.R)`_. Al editar documentos de código, se puede usar el operador "`#`" para insertar comentarios. El texto a la derecha del operador de comentarios no es ejecutado. 
 
 ##	Directorio de trabajo
 En una instalación típica en Windows, R fija el directorio de trabajo en "Documentos". Podemos verificar cuál es el directorio de trabajo con el comando:
@@ -27,14 +27,14 @@ que responde algo de esta forma:
 
 ```[1] "C:/Users/Nombre/Documents"```
 
-Siempre se puede cambiar el directorio de trabajo con el comando `setwd()`. or ejemplo, para cambiar el directorio de trabajo a una carpeta RDIR, que está en "Documentos" se puede usar:
+Siempre se puede cambiar el directorio de trabajo con el comando `setwd()`. Por ejemplo, para cambiar el directorio de trabajo a una carpeta RDIR, que está en "Documentos" se puede usar:
 ```R
 setwd("C:/Users/Nombre/Documents/RDIR")
 getwd()
 ```
 ```[1] "C:/Users/Nombre/Documents/RDIR"```
 
-Sin embargo, puede ser conveniente fijar la carpeta de trabajo. Para ello podemos editar el archivo _"Rprofile.site"_, ubicado en la carpeta "_etc_" en el subdirectorio de _R_. Normalmente esa carpeta es _"C:\Program Files\R\R-3.4.3\etc"_ (nótese el ángulo de las diagonales). Esta carpeta es probalemente protegida, así que podemos copiar el archivo a otra carpeta, editarlo y luego copiar de vuelta, dando autorización a Windows para sobreescribirlo.
+Sin embargo, puede ser conveniente fijar la carpeta de trabajo. Para ello podemos editar el archivo _"Rprofile.site"_, ubicado en la carpeta "_etc_" en el subdirectorio de _R_. Normalmente esa carpeta es _"C:\Program Files\R\R-3.4.3\etc"_ (nótese el ángulo de las diagonales. R acepta`/` o` \\`). Esta carpeta es probalemente protegida, así que podemos copiar el archivo a otra carpeta, editarlo y luego copiar de vuelta, dando autorización a Windows para sobreescribirlo.
 
 Ya editado, el archivo _Rprofile.site_ con nuevo directorio de trabajo, queda así:
 ```R
@@ -47,28 +47,28 @@ setwd("C:\\Users\\Nombre\\Documents\\RDIR")
 De allí en adelante, R siempre comenzará con dicha carpeta como directorio de trabajo.
 
 ### Creación de objetos
-R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ellos resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El operador de asignación en R es "`<-`". En el siguiente ejemplo, se le asigna a "PI" el valor 3.1417
+R es un lenguaje interpretado orientado a objetos, de manera que el usuario remite al interpretador comandos que relacionan objetos para ser procesados y obtener de ellos resultados. Los objetos en R incluyen funciones, constantes y variables. El usuario puede crear diferentes tipos de objetos, asignándole valores a un nombre. El operador de asignación en R es "`<-`". En el siguiente ejemplo, se le asigna a "PI" el valor 3.1416
 ```R
 PI <- 3.1416
 ```
-La creación de un objeto del usuario sucede en el espacio de la memoria de la sesión activa, o "espacio local" (`ls()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula.
+La creación de un objeto por el usuario sucede en el espacio de la memoria de la sesión activa (cuyos objetos se listan con `ls()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula.
 
 ### Tipos de objetos en R
 
-Existen numerosas clases de objetos en R. Las clases más simples (atómicas), que forman siempre _vectores atómicos_ de uno o más elementos son: "character" (caracter), "double" (número decimal), "integer" (números enteros) y "logical" (valores lógicos del tipo verdadero/falso:`TRUE/FALSE` o valor faltante:`NA`). Hay clases de objetos que son estructuras que contienen otros objetos, como "list" (combinación de objetos diferentes), "atomic vector" (listas de objetos de la misma clase), "factor" (vector categórico ordenado), "data.frame" (conjuntos de vectores del mismo tamaño), "matrix" (conjuntos de vectores del mismo tamaño y de la misma clase). Otras clases importantes son  "NULL" (objeto nulo), y "function" (función).
+Existen numerosas clases de objetos en R. Las clases más simples (atómicas), que forman siempre _vectores atómicos_ de uno o más elementos son: "character" (carácter), "double" (número decimal), "integer" (número entero) y "logical" (valor lógico del tipo verdadero/falso:`TRUE/FALSE` o valor faltante:`NA`). Hay clases de objetos que son estructuras que contienen otros objetos, como "list" (lista combinando objetos de diferentes clases), "atomic vector" (lista de objetos de la misma clase), "factor" (vector categórico), "data.frame" (lista de vectores del mismo tamaño), "matrix" (estructura bidimensional de elementos de la misma clase). Otras clases importantes son  "NULL" (objeto nulo), y "function" (función).
 
 Para verificar a qué clase pertenece un objeto usamos la función `class()`, por ejemplo:
 ```R
-classs(pi)
+class(pi)
 [1] "numeric"
 ```
 ```R
 class(mean)
 [1] "function"
 ```
-Usaremos listas o vectores atómicos (factores, numéricos, caracteres, lógicos) para guardar en cada objeto información de cierto tipo sobre conjuntos de casos, pero seguramente querremos combinar varios vectores, en matrices o en conjunto de datos cuando queramos organizar esa información para conjuntos de datos de n variables para n casos. Cuando las variables son de diferentes clases, la información para un conjunto de datos se guarda comunmente en estructuras de la clase _data.frame_.
+Usaremos listas o vectores atómicos (numéricos, caracteres, lógicos, o factores) para guardar en cada objeto información de cierto tipo sobre conjuntos de casos, pero seguramente querremos combinar varios vectores, en matrices o en conjunto de datos cuando queramos organizar esa información para conjuntos de datos de n variables para n casos. Cuando las variables son de diferentes clases, la información para un conjunto de datos se guarda comunmente en estructuras de la clase _data.frame_.
 
-Cuando los objetos tienen varios elementos, se combinan usando la función `c()` (concatenar). A continuación veremos ejemplos de la combinación de elementos para crear objetos con diferentes tipos de datos.
+Cuando el objeto a crear contiene varios elementos, estos se pueden combinar en un vector usando la función `c()` (concatenar). Para unirlos en una lista, `list()`; para unirlos en un conjunto, `data.frame()`.  A continuación veremos ejemplos de la combinación de elementos para crear objetos con diferentes tipos de datos.
 
 #### Listas (combinación ordenada de objetos que pueden ser de diferente clase y longitud).
 ```R
@@ -89,7 +89,7 @@ y <- matrix(1:20, nrow=5,ncol=4)
 ```R
 datos <- data.frame(a,b,c)		#numéricos, caracteres, lógicos
 ```
-#### Factores (variables que R trata como variables nominales, guardando por un lado valores nominales únicos en un vector de enteros, y por otro un vector interno con secuencias de caracteres de los valores originales, mapeados a los enteros).
+#### Factores (vectores que representan variables categóricas, ordenadas o no, guardando los valores únicos en un vector de enteros que representan los niveles, asociados cada uno a una etiqueta).
 ```R
 genero <- factor(c(rep("masculino",20),rep("femenino", 30)))
 ```
@@ -99,7 +99,7 @@ genero <- ordered(genero)
 ```
 
 ### Manipulación de objetos en R
-Para listar los objetos creados disponibles en la sesión actual, usamos el comando `ls()`. Para mostrar los contenidos de un objeto, se usa la función `print(nombre)`. Dado que la función `print()` es la función por defecto, para mostrar un objeto basta con usar su nombre. Si hemos creado el objeto `genero` como se muestra arriba, mostramos los contenidos así:
+Para listar los objetos creados disponibles en la sesión actual, usamos el comando `ls()` o  `dir()`. Para mostrar los contenidos de un objeto, se usa la función `print(nombre)`. Dado que la función `print()` es la función que R usa por defecto, para mostrar un objeto basta con usar su nombre. Si hemos creado el objeto `genero` como se muestra arriba, mostramos los contenidos así:
 
 ```R
 genero
@@ -175,7 +175,7 @@ Abrimos el objeto con el editor de datos de R:
 fix(obj) 
 ```
 #### Acceso a partes de un objeto
-R tiene diferentes modalidades para seleccionar partes relevantes de un objeto. Esto es epecialmente útil para extraer vectores de un conjunto de datos o valores de un vector que cumplan ciertos requisitos.
+R tiene diferentes modalidades para seleccionar partes relevantes de un objeto. Esto es especialmente útil para extraer vectores de un conjunto de datos o valores de un vector que cumplan ciertos requisitos.
 
 El comando print() presenta todo el objeto:
 ```R
@@ -190,7 +190,14 @@ Accedemos a una parte de un objeto que tiene nombre, indicando ese nombre con el
 obj$a
 [1] 7.0 3.0 1.2
 ```
-Accedemos a una parte de un objeto bidimensional, indicando dos coordenadas entre corchetes cuadrados. Estas coordenadas son de la forma `[fila,columna]` y se seleccionan todas las filas o columnas omitiendo esa coordenada.
+
+Accedemos a los contenidos de un componente de un objeto con el número de ese componente entre corchetes dobles:
+```R
+obj[[1]]
+[1] 7.0 3.0 1.2
+```
+
+Accedemos a una parte de un objeto bidimensional, indicando dos coordenadas entre corchetes. Estas coordenadas son de la forma `[fila,columna]` y se seleccionan todas las filas o todas las columnas omitiendo información para esa coordenada.
 ```R
 obj[1,1]
 [1] 7
@@ -211,12 +218,17 @@ obj[2,1:2]
 ```
 Extraemos elementos de un objeto usando operadores lógicos: `==` "igual a", `|` "o", `&` "y", `>` "mayor que",`<` "menor que", `<=` ("menor o igual a"), `>=` ("mayor o igual a") `!=` ("no igual a"). En los siguientes ejemplos, se seleccionan todas las _filas_ que reunen ciertas condiciones.
 ```R
-obj[obj$b=="B",] # todas las filas para las cuales la variable "b" es "B"
+obj[obj$b=="B", ] # todas las filas para las cuales la variable "b" es "B"
     a b
 2 3.0 B
 3 1.2 B
 
-obj[obj$a>2,] # todas las filas para las cuales "a" es mayor a 2
+obj[obj$a>2, ] # todas las filas para las cuales "a" es mayor a 2
+  a b
+1 7 A
+2 3 B
+
+obj[ ,7] # todas las columnas para las cuales
   a b
 1 7 A
 2 3 B
