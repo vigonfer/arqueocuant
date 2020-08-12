@@ -254,36 +254,38 @@ summary(mtcars)
 plot(mtcars[1:6], pch="*")
 numSummary(mtcars)
 ```
-#### Prueba t de dos muestras
+#### Prueba t de dos muestras asumiendo varianzas iguales
 ```R
-t.test(mtcars$mpg~mtcars$am)
-boxplot(mtcars$mpg~mtcars$am, col=8)
+t.test(mpg~am, data=mtcars, var.equal=TRUE)
+boxplot(mpg~am, data=mtcars)
 ```
 
 #### Prueba t de una muestra
 ```R
-t.test(mtcars$mpg,alternative='two.sided',mu=26,conf.level=.95)
-hist(mtcars$mpg);abline(v=26, col=2)
+t.test(mtcars$mpg, mu=26, conf=0.95)
+boxplot(mtcars$mpg)
+abline(h=26, col=2)
 ```
 
 #### Anova
 ```R
-summary((aov(mtcars$mpg~mtcars$gear)))
-boxplot(mtcars$mpg~mtcars$gear, col=8)
+(AV <- aov(mpg~gear, data=mtcars))
+summary(AV)
+boxplot(mpg~gear, data=mtcars)
 ```
 
 #### Regresión lineal
 ```R
-mm <-(mtcars$mpg~mtcars$wt)
-summary(lm(mm))
-plot(mm, col=4)
-abline(lm(mm))
+(ML <- lm(wt~mpg, data=mtcars))
+summary(ML)
+plot(wt~mpg,data=mtcars)
+abline(ML, col=2)
 ```
 
 #### Correlación de orden de rangos
 ```R
-cor.test(mtcars$mpg,mtcars$hp,method="spearman")
-plot(mtcars$mpg,mtcars$hp,col=4)
+with(mtcars, cor.test(mpg, hp, method="spearman"))
+with(mtcars, plot(mpg, hp, col=2))
 ```
 
 #### Análisis jerárquico de agrupamientos
@@ -309,9 +311,9 @@ biplot(f1)
 
 #### Análisis de agrupamiento por k-medias (k=3)
 ```R
-cl <- kmeans(mtcars,3)
-plot(mtcars$mpg,mtcars$wt,col=cl$cluster, pch=cl$cluster)
-cl
+(CL <- kmeans(mtcars,3))
+mtcars$CL <- CL$cluster
+with(mtcars, plot(mpg, wt, col=CL, pch=CL))
 ```
 
 #### Análisis de correspondencia simples
