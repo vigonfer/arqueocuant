@@ -20,7 +20,7 @@ Para ejecutar un _script_ se usa el comando `source(Nombre.R)`. Al editar docume
 
 ##	Paquetes
 Además de las funciones que vienen con las instalación básica de R o _"R base"_, se pueden usar funciones que vienen en numerosos paquetes disponibles en el sitio de R, y que se pueden instalar y cargar directamente desde la consola. 
-Para cargar un paquete, se usa la función `library(Nombre)`. Si intenta cargar un paquete que no está instalado, R da un error. Para instalar un paquete, se usa la función `install.packages("Nombre")`. Una página para ayudar a encontrar paquetes útiles es https://rseek.org/.   
+Para cargar un paquete, se usa la función `library(Nombre)`. Si intenta cargar un paquete que no está instalado, R da un error. Para instalar un paquete, se usa la función `install.packages("Nombre")`. Una página para ayudar a encontrar paquetes útiles es <https://rseek.org/>.   
 
 
 ##	Directorio de trabajo
@@ -56,7 +56,16 @@ R es un lenguaje interpretado orientado a objetos, de manera que el usuario remi
 ```R
 PI <- 3.1416
 ```
-La creación de un objeto por el usuario sucede en el espacio de la memoria de la sesión activa (cuyos objetos se listan con `ls()` o `dir()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula.
+La creación de un objeto por el usuario sucede en el espacio de la memoria de la sesión activa (cuyos objetos se listan con `ls()` o `dir()`) y si no es guardado en un archivo por el usuario, no estará disponible después de cerrar la sesión. La instalación básica de R incluye numerosos objetos que se pueden acceder desde la consola, incluso algunas constantes. Por ejemplo, `pi` es un objeto que contiene el valor de la constante π = 3.1415926535897931. Este objeto es diferente al objeto `PI` o a un objeto de nombre `Pi`, ya que R diferencia entre mayúscula y minúscula. 
+
+Para guardar un objeto en un archivo, se usa `saveRDS()` así:
+```R
+saveRDS(objeto, "archivo.rds")
+```
+Y para leer un objeto R que se ha guardado en un archivo se usa `readRDS()` así:
+```R
+objeto <- readRDS("archivo.rds")
+```
 
 ### Tipos de objetos en R
 
