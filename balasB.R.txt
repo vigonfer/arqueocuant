@@ -1,9 +1,9 @@
 ###
 #
-#	Definicion de la función "balasB"
-#	Víctor González F.
+#	Definición de la función "balasB"
+#	Víctor González Fernández
 #
-# Para dibujar gráficos de bala (Drennan 2009), en R base.
+# Para dibujar gráficos de bala (Drennan y González 2019), en R base.
 # Sintaxis: balas(var.categorica, var.numérica, color, ancho)
 #
 # Requiere:
@@ -34,9 +34,7 @@ axis(side=1,at=1:catn,labels=TR$categorias)
 #
 #
 # Ejemplo: 
-#attach(mtcars)
-#balasB(gear,mpg)
-#balasB(gear,mpg,col="darkblue",an=2)
+# with(mtcars, balasB(gear, mpg, col="darkblue", an=2))
 #
 #
 ##
