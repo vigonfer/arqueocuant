@@ -454,10 +454,10 @@ paste("La confianza es del", D7*100,"% de que una categoría ausente",
 "en la muestra aleatoria de tamaño n=", n, "es <",p,"%.")
 ```
 
-#### Dibujar un punto sobre un mapa
+#### Dibujar puntos sobre un mapa
 ```R
-library(ggmap)
-bbox <- c(left=-74.10, bottom=4.62, right=-74.07, top=4.65)
-ggmap(get_stamenmap(bbox, zoom = 15))+ 
-geom_point(aes(-74.083, 4.64), cex=5, col=2) 
+library(leaflet)
+df <- data.frame(lon=c(-74.083,-74.082), lat=c(4.64,4.65))
+coordinates(df) <- ~lon+lat
+addTiles(addMarkers(leaflet(df)))
 ```
