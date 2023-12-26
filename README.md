@@ -309,11 +309,18 @@ plot(as.dendrogram(hclust(dist(scale(mtcars)))),horiz=TRUE)
 par(mar=c(3,3,3,3))
 ```
 
-#### Escalamiento multidimensional
+#### Escalamiento multidimensional métrico (PCoA)
 ```R
 m1 <- cmdscale(dist(scale(mtcars)))
 plot(m1,type="n")
-text(m1,rownames(mtcars),col=4)
+text(m1,rownames(mtcars), col=mtcars$cyl)
+```
+
+#### Escalamiento multidimensional no métrico (NMDS)
+```R
+m1 <- MASS::isoMDS(dist(scale(mtcars)))
+plot(m1$points,type="n")
+text(m1$points,rownames(mtcars),col=mtcars$cyl,cex=.8)
 ```
 
 #### Análisis de componentes principales
