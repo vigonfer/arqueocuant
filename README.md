@@ -84,10 +84,6 @@ Usaremos listas o vectores atómicos (numéricos, caracteres, lógicos, o factor
 
 Cuando el objeto a crear contiene varios elementos, estos se pueden combinar en un vector usando la función `c()` (concatenar). Para unirlos en una lista, `list()`; para unirlos en un conjunto, `data.frame()`.  A continuación veremos ejemplos de la combinación de elementos para crear objetos con diferentes tipos de datos.
 
-#### Listas (combinación ordenada de objetos que pueden ser de diferente clase y longitud).
-```R
-w <- list(nombre="Fred", numeros=a, matriz=y, edad=5.3, datos=datos)
-```
 #### Vectores atómicos (listas de elementos de la misma clase)
 Los valores numéricos y lógicos se escriben normalmente (1.1, 2, 3, TRUE, FALSE, NA). En cambio, los valores categóricos de encierran entre comillas simples ("Alto", "Bajo", "Sitio_1").
 ```R
@@ -102,6 +98,10 @@ y <- matrix(1:20, nrow=5,ncol=4)
 #### Conjunto de datos (combinación de vectores, todos de la misma longitud, que pueden ser de diferentes clases)
 ```R
 datos <- data.frame(a,b,c)		#numéricos, caracteres, lógicos
+```
+#### Listas (combinación ordenada de objetos que pueden ser de diferente clase y longitud).
+```R
+w <- list(nombre="Fred", numeros=a, matriz=y, edad=5.3, datos=datos)
 ```
 #### Factores (vectores que representan variables categóricas, ordenadas o no, guardando los valores únicos en un vector de enteros que representan los niveles, asociados cada uno a una etiqueta).
 ```R
