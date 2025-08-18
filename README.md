@@ -1,5 +1,5 @@
 #	Uso básico de R en arqueología
-## 	Por Víctor González Fernández, 2020
+## 	Por Víctor González Fernández, 2025
 
 ### Consola
 Una vez instalado, se puede ejecutar código en R directamente desde la línea de comandos de la consola (`>_`). Alternativamente, se puede editar un documento de código (_script_) en el editor de R (`|Archivo|Nuevo script`), y ejecutar todo o parte del código, usando la combinación de teclas _Ctr-R_. El código para abrir una ventana del editor de R es:
