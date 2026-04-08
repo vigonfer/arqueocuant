@@ -473,7 +473,7 @@ SE <- function(x) {
 
 Un conjunto de funciones que responden a cierta necesidad particular se puede formalizar como paquete para ser adoptado en el repositorio oficial de R u otros repositorios. Alternativamente el usuario puede incluir esas funciones en un _script_ que puede estar disponible para que otros usuarios lo utilicen. Al ejecutar ese _script_ estarán disponibles las funciones sin necesidad de instalar un paquete.
 
-En esta página se comparte un _script_ que contiene un conjunto de _Funciones varias_ que implementan, en R, algunas de las recomendaciones del libro __[Estadística para Arqueólogos]([https://url.com](https://www.jstor.org/stable/10.7440/j.ctvh9vzhz))
+En esta página se comparte un _script_ que contiene un conjunto de _Funciones varias_ que implementan, en R, algunas de las recomendaciones de [Estadística para Arqueólogos](https://www.jstor.org/stable/10.7440/j.ctvh9vzhz/).
 
 Para usar esas funciones, descargue los archivos "R_funciones_varias.R" y "R_usando_Funciones_varias_2026.R" a su carpeta de trabajo de R, abra en el editor de R el archivo "R_usando_Funciones_varias_2026.R" y siga las instrucciones.
 
