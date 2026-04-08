@@ -1,12 +1,12 @@
 #	Uso básico de R en arqueología
-## 	Por Víctor González Fernández, 2025
+## 	Por Víctor González Fernández, 2026
 
 ### Consola
 Una vez instalado, se puede ejecutar código en R directamente desde la línea de comandos de la consola (`>_`). Alternativamente, se puede editar un documento de código (_script_) en el editor de R (`|Archivo|Nuevo script`), y ejecutar todo o parte del código, usando la combinación de teclas _Ctr-R_. El código para abrir una ventana del editor de R es:
 ```R
 file.edit("")
 ```
-Para salvar un _script_, en un archivo, se usa la combinación _Ctr-S_ y se le da un nombre y la extensión (`.R`). Los archivos .R son archivos `ASCII` y pueden ser editados por cualquier editor de texto.
+Para guardar un _script_, en un archivo, se usa la combinación _Ctr-S_ y se le da un nombre y la extensión (`.R`). Los archivos .R son archivos `ASCII` y pueden ser editados por cualquier editor de texto. Un _script_ escrito en otra computadora puede usar una codificación incompatible a la de su versión de R. Si al abrir un _script_ tiene problemas relacionados con la codificación, abra el archivo en _Bloc de Notas_, seleccione todo (_Ctr-E_), copie (_Ctr-C_) y pegue (_Ctr-V_) en una nueva ventana de su editor de código R. 
 
 Para verificar qué scripts existen en el directorio de trabajo se puede usar el comando
 ```R
@@ -85,7 +85,7 @@ Usaremos listas o vectores atómicos (numéricos, caracteres, lógicos, o factor
 Cuando el objeto a crear contiene varios elementos, estos se pueden combinar en un vector usando la función `c()` (concatenar). Para unirlos en una lista, `list()`; para unirlos en un conjunto, `data.frame()`.  A continuación veremos ejemplos de la combinación de elementos para crear objetos con diferentes tipos de datos.
 
 #### Vectores atómicos (listas de elementos de la misma clase)
-Los valores numéricos y lógicos se escriben normalmente (1.1, 2, 3, TRUE, FALSE, NA). En cambio, los valores categóricos de encierran entre comillas simples ("Alto", "Bajo", "Sitio_1").
+Los valores numéricos y lógicos se escriben normalmente (1.1, 2, 3, TRUE, FALSE, NA). En cambio, los valores categóricos de encierran entre comillas rectas ("Alto", "Bajo", "Sitio_1").
 ```R
 a <- c(1,2,3,4)      # vector numérico
 b <- c("uno","tres","once", NA)  # vector tipo caracter
@@ -259,7 +259,7 @@ obj[  ,obj[1,]>1] # todas las columnas para las cuales la fila 1 es mayor a 1
 ```
 
 ## Análisis estadísticos
-Los siguientes son ejemplos mínimos de variados análisis estadísticos en R.
+Los siguientes son ejemplos mínimos de variados análisis estadísticos en R. Al ejecutar estos comandos, recuerde que, antes de poder cargar un paquete con la función `library(Nombre)`, debe haber instalado el paquete con la función `install.packages("Nombre")`. R avisa cuando no encuentra el paquete requerido. 
 
 #### Estadística descriptiva de un conjunto de datos
 ```R
@@ -461,3 +461,26 @@ df <- data.frame(lon=c(-74.083,-74.082), lat=c(4.64,4.65))
 coordinates(df) <- ~lon+lat
 addTiles(addMarkers(leaflet(df)))
 ```
+
+### Funciones de usuario
+Para facilitar el trabajo, el usuario puede crear y compartir funciones nuevas. Una función se crea con la función _function()_
+En el siguiente ejemplo, se crea la función SE, que calcula el error estándar de un vector numérico "x":
+```R
+SE <- function(x) {
+  sd(x) / sqrt(sum((x)))
+}
+```
+
+Un conjunto de funciones que responden a cierta necesidad particular se puede formalizar como paquete para ser adoptado en el repositorio oficial de R u otros repositorios. Alternativamente el usuario puede incluir esas funciones en un _script_ que puede estar disponible para que otros usuarios lo utilicen. Al ejecutar ese _script_ estarán disponibles las funciones sin necesidad de instalar un paquete.
+
+En esta página se comparte un _script_ que contiene un conjunto de _Funciones varias_ que implementan, en R, algunas de las recomendaciones del libro __[Estadística para Arqueólogos]([https://url.com](https://www.jstor.org/stable/10.7440/j.ctvh9vzhz))
+
+Para usar esas funciones, descargue los archivos "R_funciones_varias.R" y "R_usando_Funciones_varias_2026.R" a su carpeta de trabajo de R, abra en el editor de R el archivo "R_usando_Funciones_varias_2026.R" y siga las instrucciones.
+
+
+
+
+
+
+
+
