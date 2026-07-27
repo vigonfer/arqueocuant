@@ -6,7 +6,7 @@ Una vez instalado, se puede ejecutar código en R directamente desde la línea d
 ```R
 file.edit("")
 ```
-Para guardar un _script_, en un archivo, se usa la combinación _Ctr-S_ y se le da un nombre y la extensión (`.R`). Los archivos .R son archivos `ASCII` y pueden ser editados por cualquier editor de texto. Un _script_ escrito en otra computadora puede usar una codificación incompatible a la de su versión de R. Si al abrir un _script_ tiene problemas relacionados con la codificación, abra el archivo en _Bloc de Notas_, seleccione todo (_Ctr-E_), copie (_Ctr-C_) y pegue (_Ctr-V_) en una nueva ventana de su editor de código R. 
+Para guardar un _script_, en un archivo, se usa la combinación _Ctr-S_ y se le da un nombre y la extensión (`.R`). Los archivos .R son archivos de texto plano y pueden ser editados por cualquier editor de texto. Un _script_ escrito en otra computadora puede usar una codificación incompatible a la de su versión de R. Si al abrir un _script_ tiene problemas relacionados con la codificación, abra el archivo en _Bloc de Notas_, seleccione todo (_Ctr-E_), copie (_Ctr-C_) y pegue (_Ctr-V_) en una nueva ventana de su editor de código R. 
 
 Para verificar qué scripts existen en el directorio de trabajo se puede usar el comando
 ```R
