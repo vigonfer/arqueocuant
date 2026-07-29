@@ -13,7 +13,7 @@ download.file("https://raw.githubusercontent.com/vigonfer/arqueocuant/refs/heads
 #  Solo se requiere descargar el Script una vez. 
 #
 #  Cargue el Script con el comando:
-source("abrirR.R", encoding="Latin1")
+source("abrirR.R", encoding="UTF-8")
 #
 #  Las funciones disponibles son:
 # 
